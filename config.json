@@ -1,0 +1,6 @@
+{
+  "name": "Nostr LocalBitcoins",
+  "short_description": "Inspired by LocalBitcoins: a P2P currency exchange marketplace built on Nostr",
+	"tile": "/localbitcoins/static/image/localbitcoins.png",
+  "contributors": ["bmewj"]
+}

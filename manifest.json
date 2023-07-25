@@ -1,0 +1,9 @@
+{
+    "repos": [
+        {
+            "id": "localbitcoins",
+            "organisation": "bmewj",
+            "repository": "nostr-localbitcoins"
+        }
+    ]
+}
