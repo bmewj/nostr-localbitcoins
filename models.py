@@ -7,18 +7,13 @@ from pydantic import BaseModel
 
 class CreateLocalBitcoinsData(BaseModel):
     name: str
-    currency: str
-    tip_options: str = Query(None)
-    tip_wallet: str = Query(None)
+    wallet: str
 
 
 class LocalBitcoins(BaseModel):
     id: str
     wallet: str
     name: str
-    currency: str
-    tip_options: Optional[str]
-    tip_wallet: Optional[str]
 
     @classmethod
     def from_row(cls, row: Row) -> "LocalBitcoins":

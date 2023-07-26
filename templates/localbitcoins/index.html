@@ -99,7 +99,7 @@
           dense
           v-model.trim="formDialog.data.name"
           label="Name"
-          placeholder="Tiago's PoS"
+          placeholder="Tiago's Nostr LocalBitcoins"
         ></q-input>
         <q-select
           filled
@@ -109,47 +109,11 @@
           :options="g.user.walletOptions"
           label="Wallet *"
         ></q-select>
-        <q-select
-          filled
-          dense
-          emit-value
-          v-model="formDialog.data.currency"
-          :options="currencyOptions"
-          label="Currency *"
-        ></q-select>
-        <q-select
-          filled
-          dense
-          emit-value
-          v-model="formDialog.data.tip_wallet"
-          :options="g.user.walletOptions"
-          label="Tip Wallet"
-        ></q-select>
-        <q-select
-          filled
-          multiple
-          dense
-          emit-value
-          v-model="formDialog.data.tip_options"
-          v-if="formDialog.data.tip_wallet"
-          use-input
-          use-chips
-          multiple
-          hide-dropdown-icon
-          input-debounce="0"
-          new-value-mode="add-unique"
-          label="Tip % Options (hit enter to add values)"
-          ><q-tooltip>Hit enter to add values</q-tooltip>
-          <template v-slot:hint>
-            You can leave this blank. A default rounding option is available
-            (round amount to a value)
-          </template>
-        </q-select>
         <div class="row q-mt-lg">
           <q-btn
             unelevated
             color="primary"
-            :disable="formDialog.data.currency == null || formDialog.data.name == null"
+            :disable="formDialog.data.name == null"
             type="submit"
             >Create LocalBitcoins</q-btn
           >
@@ -179,202 +143,10 @@
     data: function () {
       return {
         localbitcoinss: [],
-        currencyOptions: [
-          'USD',
-          'EUR',
-          'GBP',
-          'AED',
-          'AFN',
-          'ALL',
-          'AMD',
-          'ANG',
-          'AOA',
-          'ARS',
-          'AUD',
-          'AWG',
-          'AZN',
-          'BAM',
-          'BBD',
-          'BDT',
-          'BGN',
-          'BHD',
-          'BIF',
-          'BMD',
-          'BND',
-          'BOB',
-          'BRL',
-          'BSD',
-          'BTN',
-          'BWP',
-          'BYN',
-          'BZD',
-          'CAD',
-          'CDF',
-          'CHF',
-          'CLF',
-          'CLP',
-          'CNH',
-          'CNY',
-          'COP',
-          'CRC',
-          'CUC',
-          'CUP',
-          'CVE',
-          'CZK',
-          'DJF',
-          'DKK',
-          'DOP',
-          'DZD',
-          'EGP',
-          'ERN',
-          'ETB',
-          'EUR',
-          'FJD',
-          'FKP',
-          'GBP',
-          'GEL',
-          'GGP',
-          'GHS',
-          'GIP',
-          'GMD',
-          'GNF',
-          'GTQ',
-          'GYD',
-          'HKD',
-          'HNL',
-          'HRK',
-          'HTG',
-          'HUF',
-          'IDR',
-          'ILS',
-          'IMP',
-          'INR',
-          'IQD',
-          'IRR',
-          'IRT',
-          'ISK',
-          'JEP',
-          'JMD',
-          'JOD',
-          'JPY',
-          'KES',
-          'KGS',
-          'KHR',
-          'KMF',
-          'KPW',
-          'KRW',
-          'KWD',
-          'KYD',
-          'KZT',
-          'LAK',
-          'LBP',
-          'LKR',
-          'LRD',
-          'LSL',
-          'LYD',
-          'MAD',
-          'MDL',
-          'MGA',
-          'MKD',
-          'MMK',
-          'MNT',
-          'MOP',
-          'MRO',
-          'MUR',
-          'MVR',
-          'MWK',
-          'MXN',
-          'MYR',
-          'MZN',
-          'NAD',
-          'NGN',
-          'NIO',
-          'NOK',
-          'NPR',
-          'NZD',
-          'OMR',
-          'PAB',
-          'PEN',
-          'PGK',
-          'PHP',
-          'PKR',
-          'PLN',
-          'PYG',
-          'QAR',
-          'RON',
-          'RSD',
-          'RUB',
-          'RWF',
-          'SAR',
-          'SBD',
-          'SCR',
-          'SDG',
-          'SEK',
-          'SGD',
-          'SHP',
-          'SLL',
-          'SOS',
-          'SRD',
-          'SSP',
-          'STD',
-          'SVC',
-          'SYP',
-          'SZL',
-          'THB',
-          'TJS',
-          'TMT',
-          'TND',
-          'TOP',
-          'TRY',
-          'TTD',
-          'TWD',
-          'TZS',
-          'UAH',
-          'UGX',
-          'USD',
-          'UYU',
-          'UZS',
-          'VEF',
-          'VES',
-          'VND',
-          'VUV',
-          'WST',
-          'XAF',
-          'XAG',
-          'XAU',
-          'XCD',
-          'XDR',
-          'XOF',
-          'XPD',
-          'XPF',
-          'XPT',
-          'YER',
-          'ZAR',
-          'ZMW',
-          'ZWL'
-        ],
         localbitcoinssTable: {
           columns: [
             {name: 'id', align: 'left', label: 'ID', field: 'id'},
-            {name: 'name', align: 'left', label: 'Name', field: 'name'},
-            {
-              name: 'currency',
-              align: 'left',
-              label: 'Currency',
-              field: 'currency'
-            },
-            {
-              name: 'tip_wallet',
-              align: 'left',
-              label: 'Tip Wallet',
-              field: 'tip_wallet'
-            },
-            {
-              name: 'tip_options',
-              align: 'left',
-              label: 'Tip Options %',
-              field: 'tip_options'
-            }
+            {name: 'name', align: 'left', label: 'Name', field: 'name'}
           ],
           pagination: {
             rowsPerPage: 10
@@ -407,14 +179,7 @@
       },
       createLocalBitcoins: function () {
         var data = {
-          name: this.formDialog.data.name,
-          currency: this.formDialog.data.currency,
-          tip_options: this.formDialog.data.tip_options
-            ? JSON.stringify(
-                this.formDialog.data.tip_options.map(str => parseInt(str))
-              )
-            : JSON.stringify([]),
-          tip_wallet: this.formDialog.data.tip_wallet || ''
+          name: this.formDialog.data.name
         }
         var self = this
 

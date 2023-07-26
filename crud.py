@@ -10,16 +10,13 @@ async def create_localbitcoins(wallet_id: str, data: CreateLocalBitcoinsData) ->
     localbitcoins_id = urlsafe_short_hash()
     await db.execute(
         """
-        INSERT INTO localbitcoins.localbitcoinss (id, wallet, name, currency, tip_options, tip_wallet)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO localbitcoins.localbitcoinss (id, wallet, name)
+        VALUES (?, ?, ?)
         """,
         (
             localbitcoins_id,
             wallet_id,
-            data.name,
-            data.currency,
-            data.tip_options,
-            data.tip_wallet,
+            data.name
         ),
     )
 
